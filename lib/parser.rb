@@ -5,7 +5,7 @@ require 'nokogiri'
 class Parser 
     def self.parse_page(url)
       unparsed_page = HTTParty.get(url)
-      parsed_page = Nokogiri::HTML.parse(unparsed_page.body)
+      parsed_page = Nokogiri::HTML.fragment(unparsed_page.body)
       parsed_page
     end
 

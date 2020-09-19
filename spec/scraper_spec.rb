@@ -2,16 +2,8 @@ require './lib/scraper.rb'
 
 RSpec.describe 'scraper class methods' do
 
-    context 'test list_scraper' do
+    # let(:reciepe_name) { '' }
 
-    end
-
-    context 'test  scraper' do
-
-    end
-
-    context 'test get_data' do
-
-    end
+   
 
 end
