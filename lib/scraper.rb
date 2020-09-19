@@ -1,15 +1,27 @@
 require 'byebug'
 require 'httparty'
 require 'nokogiri'
-require_relative '../lib/parser.rb'
+require_relative './parser.rb'
 
-class Scraper
+class Crawler
+
+end
+
+class RecipeCrawler < Crawler
+   
+  attr_accessor :base_url, :type, :prep_time_min
+
+  def initialize(type, prep_time_min)
+    @base_url = 'https://natashaskitchen.com/category/'
+    @type = type
+    @prep_time_min = prep_time_min
+  end
     
   def list_scraper(list)
     recipes = Array.new
     list.each do |recipecard|
-      recipe_page_url = recipecard.css('a').attribute('href').value
-      parsed_recipe_page = parse_page(recipe_page_url)
+      recipe_page_url = Parser.parse_url(recipecard)
+      parsed_recipe_page = Parser.parse_page(recipe_page_url)
       recipe_container =  parsed_recipe_page.css('div.wprm-recipe-container')
       recipe = {
         name: recipe_container.css('h2.wprm-recipe-name').text,
@@ -31,24 +43,25 @@ class Scraper
     has_next_page = true
     while has_next_page
       puts paged_url
-      parsed_page = parse_page(paged_url)
+      parsed_page = Parser.parse_page(paged_url)
       grid = parsed_page.css("div.postgrid")
       list = grid.css("div.li-a")
       recipes.push(*list_scraper(list))
+
       next_page = parsed_page.css('div.navright')
       if next_page.css('a').empty?
         has_next_page = false
       else
-        paged_url = next_page.css('a').attribute('href').value
+        paged_url = Parser.parse_url(next_page)
       end
     end    
     recipes
   end
     
-  def get_data(crawler)
-    recipes = scraper(crawler[:base_url], crawler[:type])
+  def get_data()
+    recipes = scraper(@base_url, @type)
     recipes.select do |item|
-      item[:prep_time_min] <= crawler[:prep_time_min]
+      item[:prep_time_min] <= @prep_time_min
     end
   end
 end
