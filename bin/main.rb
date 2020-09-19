@@ -1,3 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/parser.rb'
+require_relative '../lib/scraper.rb'
+
 recipe_spec = {
     base_url: 'https://natashaskitchen.com/category/',
     type: 'breakfast',
