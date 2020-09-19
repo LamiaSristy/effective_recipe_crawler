@@ -25,7 +25,7 @@ class RecipeCrawler < Crawler
       recipe_container =  parsed_recipe_page.css('div.wprm-recipe-container')
       recipe = {
         name: recipe_container.css('h2.wprm-recipe-name').text,
-        prep_time_min: recipe_container.css('span.wprm-recipe-total-time-name').text.to_i,
+        prep_time_min: recipe_container.css('span.wprm-recipe-total_time-minutes').text.to_i,
         cost_making: recipe_container.css('span.wprm-recipe-cuisine').text.strip,
         cuisine: recipe_container.css('span.wprm-recipe-newcuisine').text.strip,
         skill_level: recipe_container.css('span.wprm-recipe-course').text.strip,
