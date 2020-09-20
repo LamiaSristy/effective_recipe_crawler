@@ -3,7 +3,7 @@ require 'nokogiri'
 require_relative './parser.rb'
 
 class RecipeCrawler
-  attr_accessor :base_url, :type, :prep_time_min
+  attr_reader :base_url, :type, :prep_time_min
 
   def initialize(type, prep_time_min)
     @base_url = 'https://natashaskitchen.com/category/'
