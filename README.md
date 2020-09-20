@@ -1,6 +1,6 @@
-# effective_recipe_crawler
+# Effective Recipe Crawler
 
-This project is a web scraper/ web crawler, which takes a food recipe website and scrap its data to show the required recipes. 
+This project is a web scraper/ web crawler, which takes a food recipe website and scrap its data to show the expected recipes. 
 
 Here I used my favorite recipe blog 'https://natashaskitchen.com/' for making the crawler that searches for breakfast items that can be made within 5 minutes. But the results can be changed by changing the input fields. One can search for lunch, dinner, appetizer, or any special cuisine with little changes.
 
@@ -30,7 +30,7 @@ To get this project up and running locally, you must already have ruby and neces
 
 1. Open Terminal.
 2. Navigate to your desired location to download the contents of this repository.
-3. Copy and paste the following code into the Terminal: git clone https://github.com/LamiaSristy/effective_recipe_crawler.
+3. Copy and paste the following code into the Terminal: git clone https://github.com/LamiaSristy/effective_recipe_crawler
 4. Run ```cd effective_recipe_crawler```.
 5. Run ```bundle install``` to get the necesary gems.
 6. Run ```bin/main.rb```.
