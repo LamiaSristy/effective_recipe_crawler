@@ -1,5 +1,4 @@
 require 'vcr_helper'
-require 'vcr_helper'
 require './lib/recipe_crawler.rb'
 
 RSpec.describe 'scraper class methods' do
