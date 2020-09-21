@@ -4,7 +4,7 @@ require_relative './parser.rb'
 
 class Crawler
   attr_reader :base_url
-  
+
   def initialize(base_url)
     @base_url = base_url
   end
@@ -67,5 +67,4 @@ class RecipeCrawler < Crawler
     end
     recipes
   end
-
 end
