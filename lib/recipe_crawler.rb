@@ -53,6 +53,7 @@ class RecipeCrawler < Crawler
     recipes = []
     has_next_page = true
     while has_next_page
+      puts "Searching for your reqired recipes inside #{paged_url} \n please have patience..."
       parsed_page = Parser.parse_page(paged_url)
       grid = parsed_page.css('div.postgrid')
       list = grid.css('div.li-a')
