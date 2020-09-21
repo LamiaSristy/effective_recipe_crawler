@@ -2,14 +2,31 @@ require 'httparty'
 require 'nokogiri'
 require_relative './parser.rb'
 
-class RecipeCrawler
-  attr_reader :base_url, :type, :prep_time_min
+class Crawler
+  attr_reader :base_url
+  
+  def initialize(base_url)
+    @base_url = base_url
+  end
+end
+
+class RecipeCrawler < Crawler
+  attr_reader :type, :prep_time_min
 
   def initialize(type, prep_time_min)
-    @base_url = 'https://natashaskitchen.com/category/'
     @type = type
     @prep_time_min = prep_time_min
+    super('https://natashaskitchen.com/category/')
   end
+
+  def res_crawl
+    recipes = scraper
+    recipes.select do |item|
+      item[:prep_time_min] <= @prep_time_min && (item[:prep_time_min]).positive?
+    end
+  end
+
+  private
 
   def list_scraper(list)
     recipes = []
@@ -31,7 +48,7 @@ class RecipeCrawler
     recipes
   end
 
-  def scraper()
+  def scraper
     paged_url = "#{@base_url}#{@type}"
     recipes = []
     has_next_page = true
@@ -51,10 +68,4 @@ class RecipeCrawler
     recipes
   end
 
-  def res_crawl()
-    recipes = scraper
-    recipes.select do |item|
-      item[:prep_time_min] <= @prep_time_min && (item[:prep_time_min]).positive?
-    end
-  end
 end

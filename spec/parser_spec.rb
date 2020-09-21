@@ -1,5 +1,5 @@
 require 'nokogiri'
-require './lib/parser.rb'
+require_relative '../lib/parser.rb'
 
 RSpec.describe 'parser class methods' do
   let(:mock_url) { 'https://example.com/test-path/' }
